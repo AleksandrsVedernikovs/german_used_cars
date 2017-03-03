@@ -31,6 +31,12 @@ view: location_data {
     type: number
     sql: ${TABLE}.postal_code ;;
   }
+  dimension: location {
+    type: location
+    sql_latitude: ${TABLE}.latitude;;
+    sql_longitude: ${TABLE}.longitude;;
+
+  }
 
   dimension: state {
     type: string
