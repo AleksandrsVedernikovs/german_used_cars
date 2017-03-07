@@ -113,4 +113,8 @@ view: cars_data_large {
     type: count
     drill_fields: [id, name]
   }
+  measure: percent_of_total_count {
+    type: percent_of_total
+    sql: ${count} ;;
+  }
 }
