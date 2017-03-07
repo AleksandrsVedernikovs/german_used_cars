@@ -104,7 +104,11 @@ view: cars_data_large {
     type: number
     sql: ${TABLE}.year_of_registration ;;
   }
-
+  dimension: location {
+    type: location
+    sql_latitude: ${location_data.latitude} ;;
+    sql_longitude: ${location_data.longitude} ;;
+  }
   measure: count {
     type: count
     drill_fields: [id, name]
