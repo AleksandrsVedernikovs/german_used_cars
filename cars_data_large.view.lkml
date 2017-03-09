@@ -113,6 +113,10 @@ view: cars_data_large {
     type: count
     drill_fields: [id, name]
   }
+  measure: most_recent_sold {
+    type: date
+    sql: MAX(${last_seen_date}) ;;
+  }
   measure: percent_of_total_count {
     type: percent_of_total
     sql: ${count} ;;
