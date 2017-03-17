@@ -99,7 +99,11 @@ view: cars_data_large {
     type: number
     sql: ${TABLE}.price ;;
   }
-
+  measure: ave_price {
+    type: average
+    sql: ${price} ;;
+    value_format_name: decimal_0
+  }
   dimension: vehicle_type {
     type: string
     sql: ${TABLE}.vehicle_type ;;
