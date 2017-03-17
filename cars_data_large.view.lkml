@@ -30,6 +30,11 @@ view: cars_data_large {
     type: number
     sql: ${TABLE}.days_until_sold ;;
   }
+  measure: ave_days_sold {
+    type: average
+    sql: ${days_until_sold} ;;
+    value_format_name: decimal_0
+  }
 
   dimension: fuel_type {
     type: string
