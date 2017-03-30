@@ -99,6 +99,18 @@ view: cars_data_large {
     type: number
     sql: ${TABLE}.price ;;
   }
+
+  measure: max_price {
+    type: max
+    sql: ${price} ;;
+    value_format_name: decimal_0
+  }
+
+  measure: min_price {
+    type: min
+    sql: ${price} ;;
+    value_format_name: decimal_0
+  }
   measure: ave_price {
     type: average
     sql: ${price} ;;
