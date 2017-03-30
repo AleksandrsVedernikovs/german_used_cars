@@ -116,6 +116,11 @@ view: cars_data_large {
     sql: ${price} ;;
     value_format_name: decimal_0
   }
+
+  measure: ave_kilometers {
+    type: average
+    sql: ${kilometer} ;;
+  }
   dimension: vehicle_type {
     type: string
     sql: ${TABLE}.vehicle_type ;;
