@@ -120,6 +120,7 @@ view: cars_data_large {
   measure: ave_kilometers {
     type: average
     sql: ${kilometer} ;;
+    value_format_name: decimal_0
   }
   dimension: vehicle_type {
     type: string
