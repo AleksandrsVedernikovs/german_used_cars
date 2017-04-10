@@ -149,9 +149,8 @@ view: cars_data_large {
     sql: ${count} ;;
   }
   measure: count_brand {
-    type: count_distinct
+    type: count
     drill_fields: [id, name]
-    sql: ${brand} ;;
     filters: {
       field: days_until_sold
       value: "0"
