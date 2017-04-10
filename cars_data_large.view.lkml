@@ -150,7 +150,7 @@ view: cars_data_large {
   }
   measure: count_brand {
     type: count
-    drill_fields: [id, name]
+    drill_fields: [id, name, price]
     filters: {
       field: days_until_sold
       value: "0"
