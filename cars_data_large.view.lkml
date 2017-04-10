@@ -100,7 +100,7 @@ view: cars_data_large {
     tiers: [0, 100, 200, 300, 400, 500, 600, 700, 800]
     style: integer
     sql: ${power_ps} ;;
-    value_format: "$#,##0"
+    value_format: "*00#"
   }
 
   dimension: price {
