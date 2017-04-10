@@ -95,6 +95,14 @@ view: cars_data_large {
     sql: ${TABLE}.power_ps ;;
   }
 
+  dimension: power_ps_tier {
+    type: tier
+    tiers: [0, 100, 200, 300, 400, 500, 600, 700, 800]
+    style: integer
+    sql: ${power_ps} ;;
+    value_format: "$#,##0"
+  }
+
   dimension: price {
     type: number
     sql: ${TABLE}.price ;;
