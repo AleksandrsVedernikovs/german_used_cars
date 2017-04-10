@@ -148,4 +148,13 @@ view: cars_data_large {
     type: percent_of_total
     sql: ${count} ;;
   }
+  measure: count_brand {
+    type: count_distinct
+    drill_fields: [id, name]
+    sql: ${brand} ;;
+    filters: {
+      field: days_until_sold
+      value: "0"
+    }
+    }
 }
