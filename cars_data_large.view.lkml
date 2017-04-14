@@ -164,4 +164,15 @@ view: cars_data_large {
       value: "0"
     }
     }
+  measure: count_audi {
+    type: count
+    drill_fields: [id, name, price]
+    filters: {
+      field: brand
+      value: "audi"
+    }
+  }
+
+
+
 }
