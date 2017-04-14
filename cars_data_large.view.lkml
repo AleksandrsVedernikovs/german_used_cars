@@ -164,15 +164,31 @@ view: cars_data_large {
       value: "0"
     }
     }
-  measure: count_audi {
+  measure: count_filter_value_yes {
     type: count
     drill_fields: [id, name, price]
     filters: {
-      field: brand
-      value: "audi"
+      field: brand_selector
+      value: "yes"
     }
   }
 
+  measure: count_filter_value_no {
+    type: count
+    drill_fields: [id, name, price]
+    filters: {
+      field: brand_selector
+      value: "no"
+    }
+  }
+
+  dimension: brand_selector {
+    type: yesno
+    sql: {% condition cars_data_large.brand_filter %}${brand} {% endcondition %};;
+    }
+  filter: brand_filter {suggest_dimension: brand
+    type: string
+  }
 
 
 }
