@@ -7,6 +7,8 @@ view: cars_data_large {
     sql: ${TABLE}.id ;;
   }
 
+
+
   dimension: brand {
     type: string
     sql: ${TABLE}.brand ;;
