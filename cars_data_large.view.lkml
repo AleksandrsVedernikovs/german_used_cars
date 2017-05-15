@@ -1,4 +1,4 @@
-view: data_large {
+view: cars_data_large {
   sql_table_name: public.cars_data_large ;;
 
   dimension: id {
@@ -186,7 +186,7 @@ view: data_large {
 
   dimension: brand_selector {
     type: yesno
-    sql: {% condition data_large.brand_filter %}${brand} {% endcondition %};;
+    sql: {% condition cars_data_large.brand_filter %}${brand} {% endcondition %};;
     }
   filter: brand_filter {suggest_dimension: brand
     type: string
