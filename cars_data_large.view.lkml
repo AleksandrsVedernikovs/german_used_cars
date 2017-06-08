@@ -158,6 +158,12 @@ view: cars_data_large {
     type: percent_of_total
     sql: ${count} ;;
   }
+
+  measure: total_revenue {
+    type: sum
+    sql: ${price} ;;
+    value_format_name: decimal_0
+  }
   measure: count_brand {
     type: count
     drill_fields: [id, name, price]
