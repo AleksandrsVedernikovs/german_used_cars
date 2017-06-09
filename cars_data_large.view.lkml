@@ -108,6 +108,13 @@ view: cars_data_large {
   dimension: price {
     type: number
     sql: ${TABLE}.price ;;
+    value_format_name: usd_0
+  }
+
+  dimension: difference_from_average_price {
+    type: number
+    sql: ${sales_facts.average_price} - ${price} ;;
+    value_format_name: usd_0
   }
 
   measure: max_price {
