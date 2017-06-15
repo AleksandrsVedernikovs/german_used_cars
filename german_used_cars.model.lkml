@@ -25,3 +25,5 @@ explore: cars_data_large {
 explore: location_data {}
 
 explore: sales_facts {}
+
+explore: sales_facts_copy {}

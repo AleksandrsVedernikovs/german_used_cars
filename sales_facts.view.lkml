@@ -39,8 +39,5 @@ measure: total_cars_count {
   type: count
 }
 
-measure: cars_total_revenue {
-  type: sum
-}
 
 }
