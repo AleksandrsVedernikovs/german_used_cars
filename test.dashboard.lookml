@@ -68,7 +68,7 @@
     map_value_scale_clamp_max:
     map_latitude: 50.78510168548186
     map_longitude: 10.491943359375002
-    map_zoom: 6
+    map_zoom: 8
     listen: {}
     row:
     col:
