@@ -25,6 +25,7 @@ view: cars_data_large {
       week,
       month,
       quarter,
+      week_of_year,
       year
     ]
     convert_tz: no
@@ -98,6 +99,7 @@ view: cars_data_large {
   dimension: power_ps {
     type: number
     sql: ${TABLE}.power_ps ;;
+    drill_fields: [brand,name]
   }
 
   dimension: power_ps_tier {
@@ -134,7 +136,7 @@ view: cars_data_large {
   measure: ave_price {
     type: average
     sql: ${price} ;;
-    value_format_name: decimal_0
+    value_format:  "\"€ \"#,##0.00"
   }
 
   measure: ave_kilometers {
@@ -193,7 +195,20 @@ view: cars_data_large {
 measure: revenue {
   type: sum
   sql: ${price} ;;
+  value_format_name: usd_0
+#  link:{
+#   label: "test"
+#    url: "/dashboards/german_used_cars::Test_dash"
+#  }
+
 }
+
+measure: median_price {
+  type: median
+  sql: ${price} ;;
+  value_format_name: eur
+}
+
   measure: count_filter_value_no {
     type: count
     drill_fields: [id, name, price]
