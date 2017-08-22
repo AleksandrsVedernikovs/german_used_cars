@@ -114,6 +114,10 @@ view: cars_data_large {
     type: number
     sql: ${TABLE}.price ;;
     value_format_name: usd_0
+    link:{
+      label: "test"
+      url: "/dashboards/german_used_cars::price?price_bucket={{value}}"
+    }
   }
 
   dimension: difference_from_average_price {
@@ -196,10 +200,7 @@ measure: revenue {
   type: sum
   sql: ${price} ;;
   value_format_name: usd_0
-  link:{
-    label: "test"
-    url: "/dashboards/german_used_cars::price?price_bucket={{value}}"
-    }
+
 
 #  link:{
 #   label: "test"
