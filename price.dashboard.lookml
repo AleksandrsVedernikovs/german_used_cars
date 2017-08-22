@@ -1,5 +1,5 @@
-- dashboard: test_dash
-  title: Test_dash
+- dashboard: price
+  title: price
   layout: newspaper
   elements:
   - name: Map of sales of Audi's based on ave_price of sale
@@ -71,16 +71,16 @@
     map_longitude: 10.491943359375002
     map_zoom: 6
     listen:
-      my_filter: cars_data_large.date_created_date
+      price_bucket: cars_data_large.price
     row:
     col:
     width:
     height:
   filters:
-  - name: my_filter
-    title: my_filter
-    type: date_filter
-    default_value: 2 years ago for 2 years
+  - name: price_bucket
+    title: price_bucket
+    type: number_filter
+    default_value: ">500000"
     model:
     explore:
     field:

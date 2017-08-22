@@ -196,12 +196,18 @@ measure: revenue {
   type: sum
   sql: ${price} ;;
   value_format_name: usd_0
+  link:{
+    label: "test"
+    url: "/dashboards/german_used_cars::test_dash?my_filter={{value}}"
+    }
+
 #  link:{
 #   label: "test"
 #    url: "/dashboards/german_used_cars::Test_dash"
 #  }
 
 }
+
 
 measure: median_price {
   type: median
