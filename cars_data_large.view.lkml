@@ -198,7 +198,7 @@ measure: revenue {
   value_format_name: usd_0
   link:{
     label: "test"
-    url: "/dashboards/german_used_cars::test_dash?my_filter={{value}}"
+    url: "/dashboards/german_used_cars::price?price_bucket={{value}}"
     }
 
 #  link:{
