@@ -13,6 +13,12 @@ view: cars_data_large {
     type: string
     sql: ${TABLE}.brand ;;
     drill_fields: [model,name,price]
+    link:{
+      label: "nice"
+      url: "/explore/german_used_cars/cars_data_large?fields=cars_data_large.brand,cars_data_large.gearbox&f[cars_data_large.count]={{ _filters['cars_data_large.count'] | url_encode }}&f[cars_data_large.brand]={{ _filters['cars_data_large.brand'] | url_encode }}"
+      icon_url: "http://www.looker.com/favicon.ico"
+    }
+
   }
 
   dimension_group: date_created {
