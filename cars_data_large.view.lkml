@@ -12,7 +12,7 @@ view: cars_data_large {
   dimension: brand {
     type: string
     sql: ${TABLE}.brand ;;
-    drill_fields: [model,name,price]
+    drill_fields: [brand,model,name,price,count]
     link:{
       label: "nice"
       url: "/explore/german_used_cars/cars_data_large?fields=cars_data_large.brand,cars_data_large.gearbox&f[cars_data_large.count]={{ _filters['cars_data_large.count'] | url_encode }}&f[cars_data_large.brand]={{ _filters['cars_data_large.brand'] | url_encode }}"
@@ -30,12 +30,18 @@ view: cars_data_large {
       day_of_week_index,
       week,
       month,
+      month_name,
       quarter,
       week_of_year,
       year
     ]
     convert_tz: no
     sql: ${TABLE}.date_created ;;
+  }
+
+  dimension: days_on_site {
+    type: number
+    sql:  date ${last_seen_date} - date ${date_created_date} ;;
   }
 
   dimension: days_until_sold {
@@ -129,13 +135,14 @@ view: cars_data_large {
   dimension: difference_from_average_price {
     type: number
     sql: ${sales_facts.average_price} - ${price} ;;
-    value_format_name: usd_0
+    value_format_name: eur_0
   }
 
   measure: max_price {
     type: max
     sql: ${price} ;;
-    value_format_name: decimal_0
+    #value_format_name: eur_0
+    value_format: "\"€ \"#,##0"
   }
 
   measure: min_price {
@@ -170,7 +177,7 @@ view: cars_data_large {
   }
   measure: count {
     type: count
-    drill_fields: [id, name]
+    drill_fields: [id, name, count]
   }
   measure: most_recent_sold {
     type: date
@@ -204,6 +211,7 @@ view: cars_data_large {
   }
 measure: revenue {
   type: sum
+  drill_fields: [id, name, price]
   sql: ${price} ;;
   value_format_name: usd_0
 
