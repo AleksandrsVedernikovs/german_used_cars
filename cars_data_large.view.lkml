@@ -215,13 +215,23 @@ measure: revenue {
   sql: ${price} ;;
   value_format_name: usd_0
 
-
 #  link:{
 #   label: "test"
 #    url: "/dashboards/german_used_cars::Test_dash"
 #  }
 
 }
+
+
+  measure: total_Dau_2 {
+    type: sum
+    sql: ${price} ;;
+    html:
+    <summary style="outline:none"> Dau: {{ revenue._rendered_value }}</summary>
+    Total Dau: {{ count._rendered_value }}
+    <summary style="outline:none"> Percentage: {{ total_revenue._linked_value }}</summary>
+    <br/>;;
+  }
 
 
 measure: median_price {
