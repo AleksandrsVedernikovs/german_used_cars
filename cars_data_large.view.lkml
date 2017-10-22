@@ -227,10 +227,10 @@ measure: revenue {
     type: sum
     sql: ${price} ;;
     html:
-    <summary style="outline:none"> Dau: {{ revenue._rendered_value }}</summary>
-    Total Dau: {{ count._rendered_value }}
-    <summary style="outline:none"> Percentage: {{ total_revenue._linked_value }}</summary>
-    <br/>;;
+    <summary style="outline:none"> Dau: {{ revenue._rendered_value }}
+    </summary>Total Dau: {{ count._rendered_value }}
+    <summary style="outline:none"> Percentage: {{ total_revenue._rendered_value }}
+    </summary> <br/>;;
   }
 
 
