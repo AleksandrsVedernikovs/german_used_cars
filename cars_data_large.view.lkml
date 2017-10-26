@@ -283,7 +283,7 @@ measure: revenue {
     html:
     <summary style="outline:none"> Dau: {{ revenue._rendered_value }}
     </summary>Total Dau: {{ count._rendered_value }}
-    <summary style="outline:none"> Percentage: {{ total_revenue._rendered_value }}
+    <summary style="outline:none"> Percentage: {{ percent_of_total_count._rendered_value }}
     </summary> <br/>;;
   }
 
