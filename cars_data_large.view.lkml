@@ -138,23 +138,82 @@ view: cars_data_large {
     value_format_name: eur_0
   }
 
-  measure: max_price {
+  measure: most_expensive_item {
     type: max
     sql: ${price} ;;
     #value_format_name: eur_0
     value_format: "\"€ \"#,##0"
   }
 
-  measure: min_price {
+  measure: least_expensive_item {
     type: min
     sql: ${price} ;;
     value_format_name: decimal_0
   }
-  measure: ave_price {
+  measure: average_sale_price {
     type: average
     sql: ${price} ;;
     value_format:  "\"€ \"#,##0.00"
   }
+  measure: total_sale_price {
+    type: sum
+    sql: ${price} ;;
+    value_format_name: decimal_0
+  }
+
+  parameter: sale_price_metric_picker {
+    description: "Use with the Sale Price Metric measure"
+    type: unquoted
+    allowed_value: {
+      label: "Total Sale Price"
+      value: "SUM"
+    }
+    allowed_value: {
+      label: "Average Sale Price"
+      value: "AVG"
+    }
+    allowed_value: {
+      label: "Maximum Sale Price"
+      value: "MAX"
+    }
+    allowed_value: {
+      label: "Minimum Sale Price"
+      value: "MIN"
+    }
+  }
+
+  measure: sale_price_metric {
+    description: "Use with the Sale Price Metric Picker filter-only field"
+    type: number
+    label_from_parameter: sale_price_metric_picker
+    sql: {% parameter sale_price_metric_picker %}(${price}) ;;
+    value_format_name: usd
+  }
+
+
+
+
+  filter: brand_count_picker {
+    description: "Use with the Category Count measure"
+    type: string
+    suggest_explore: cars_data_large
+    suggest_dimension: cars_data_large.brand
+  }
+
+  measure: category_count {
+    description: "Use with the Brand Count Picker filter-only field"
+    type: sum
+    sql:
+    CASE
+      WHEN {% condition brand_count_picker %} ${cars_data_large.brand} {% endcondition %}
+      THEN 1
+      ELSE 0
+    END
+  ;;
+  }
+
+
+
 
   measure: ave_kilometers {
     type: average
@@ -188,11 +247,6 @@ view: cars_data_large {
     sql: ${count} ;;
   }
 
-  measure: total_revenue {
-    type: sum
-    sql: ${price} ;;
-    value_format_name: decimal_0
-  }
   measure: count_brand {
     type: count
     drill_fields: [id, name, price]

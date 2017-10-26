@@ -1,7 +1,7 @@
 - dashboard: Test_dash
   layout: newspaper
   elements:
-  - name: Map of sales of Audi's based on ave_price of sale
+  - name: Map of sales of Audi's based on average_sale_price of sale
     label: Map of sales of Audi's based on ave_price of sale
     model: german_used_cars
     explore: cars_data_large
@@ -10,11 +10,11 @@
     - cars_data_large.brand
     - location_data.city
     - cars_data_large.location
-    - cars_data_large.ave_price
+    - cars_data_large.average_sale_price
     filters:
       cars_data_large.brand: audi
     sorts:
-    - cars_data_large.ave_price desc
+    - cars_data_large.average_sale_price desc
     limit: 500
     column_limit: 50
     query_timezone: America/Los_Angeles
