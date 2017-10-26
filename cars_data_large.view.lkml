@@ -288,6 +288,23 @@ measure: revenue {
   }
 
 
+  measure: html_test {
+    type: sum
+    sql: ${price} ;;
+    html: {% if value <= 100000 %}
+          <div style = " background-color: #4FBC89; font-size:100%; text-align:center">{{rendered_value}}</div>
+          {% elsif value > 100001 and value <= 500000 %}
+          <div style = " background-color: #FCF758; font-size:100%; text-align:center">{{rendered_value}}</div>
+          {% elsif value > 500001 and value <= 1000000 %}
+          <div style = " background-color: #ff3333; font-size:100%; text-align:center">{{rendered_value}}</div>
+          {% else %}
+            <p style="color: black; background-color: orange; font-size:100%; text-align:center">{{ rendered_value }}</p>
+          {% endif %}
+
+          ;;
+  }
+
+
 measure: median_price {
   type: median
   sql: ${price} ;;
