@@ -6,6 +6,11 @@ include: "*.view"
 # include all the dashboards
 include: "*.dashboard"
 
+map_layer: germany_states {
+  file: "germany.json"
+  property_key: "NAME_1"
+}
+
 explore: cars_data_large {
 
   join: location_data {
