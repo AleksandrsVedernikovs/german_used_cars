@@ -5,6 +5,14 @@ view: cars_data_large {
     primary_key: yes
     type: number
     sql: ${TABLE}.id ;;
+    action: {
+      label: "Send to Zapier"
+      url: "https://hooks.zapier.com/hooks/catch/2908055/8vl8jc/"
+      param: {
+        name: "id"
+        value: "{{ value }}"
+      }
+    }
   }
 
 
@@ -237,6 +245,7 @@ view: cars_data_large {
   measure: count {
     type: count
     drill_fields: [id, name, count]
+    html: <font size="5">{{ rendered_value }}</font> ;;
   }
   measure: most_recent_sold {
     type: date
@@ -378,6 +387,44 @@ measure: median_price {
   filter: brand_filter {suggest_dimension: brand
     type: string
   }
+
+
+
+
+
+#############################
+
+
+  parameter: sasha_test {
+    description: "Use with the Sale Price Metric measure"
+    type: string
+    allowed_value: {
+      label: "location"
+      value: "location"
+    }
+  }
+
+  dimension: test {
+    type: string
+    label_from_parameter: sasha_test
+  sql: CASE
+         WHEN {% parameter sasha_test %} = 'location' THEN
+           ${location_data.location}::VARCHAR
+         ELSE
+           NULL
+       END  ;;
+  }
+
+
+
+  ############################
+
+
+
+
+
+
+
 
 
 }
