@@ -81,8 +81,8 @@
     title: price_bucket
     type: number_filter
     default_value: ">500000"
-    model:
-    explore:
-    field:
-    listens_to_filters: []
+#     model:
+#     explore:
+#     field:
+#     listens_to_filters: []
     allow_multiple_values: true
