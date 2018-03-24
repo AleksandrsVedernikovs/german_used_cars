@@ -67,6 +67,12 @@ view: cars_data_large {
     sql: ${TABLE}.fuel_type ;;
   }
 
+  dimension: is_petrol_is_diesel{
+    type: yesno
+    sql: ${TABLE}.fuel_type = 'benzin' OR ${TABLE}.fuel_type = 'diesel';;
+  }
+
+
   dimension: gearbox {
     type: string
     sql: ${TABLE}.gearbox ;;
@@ -245,7 +251,7 @@ view: cars_data_large {
   measure: count {
     type: count
     drill_fields: [id, name, count]
-    html: <font size="5">{{ rendered_value }}</font> ;;
+    #html: <font size="5">{{ rendered_value }}</font> ;;
   }
   measure: most_recent_sold {
     type: date
@@ -300,12 +306,14 @@ measure: revenue {
   measure: html_test {
     type: sum
     sql: ${price} ;;
-    html: {% if value <= 100000 %}
+    html: {% if value <= 5000000 %}
           <div style = " background-color: #4FBC89; font-size:100%; text-align:center">{{rendered_value}}</div>
-          {% elsif value > 100001 and value <= 500000 %}
+          {% elsif value > 5000001 and value <= 10000000 %}
           <div style = " background-color: #FCF758; font-size:100%; text-align:center">{{rendered_value}}</div>
-          {% elsif value > 500001 and value <= 1000000 %}
+          {% elsif value > 10000001 and value <= 25000000 %}
           <div style = " background-color: #ff3333; font-size:100%; text-align:center">{{rendered_value}}</div>
+          {% elsif value > 25000001 and value <= 50000000 %}
+          <div style = " background-color: #00ff00; font-size:100%; text-align:center">{{rendered_value}}</div>
           {% else %}
             <p style="color: black; background-color: orange; font-size:100%; text-align:center">{{ rendered_value }}</p>
           {% endif %}

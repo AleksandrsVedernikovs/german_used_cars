@@ -12,6 +12,7 @@ map_layer: germany_states {
 }
 
 explore: cars_data_large {
+  sql_always_where: (${power_ps} >= 50 AND ${power_ps} <= 750) ;;
 
   join: location_data {
   type: left_outer
