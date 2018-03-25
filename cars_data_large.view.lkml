@@ -307,15 +307,15 @@ measure: revenue {
     type: sum
     sql: ${price} ;;
     html: {% if value <= 5000000 %}
-          <div style = " background-color: #4FBC89; font-size:100%; text-align:center">{{rendered_value}}</div>
+          <div style = "color: black; background-color: #4FBC89; font-size:100%; text-align:center">{{rendered_value}}</div>
           {% elsif value > 5000001 and value <= 10000000 %}
-          <div style = " background-color: #FCF758; font-size:100%; text-align:center">{{rendered_value}}</div>
+          <div style = "color: black; background-color: #FCF758; font-size:100%; text-align:center">{{rendered_value}}</div>
           {% elsif value > 10000001 and value <= 25000000 %}
-          <div style = " background-color: #ff3333; font-size:100%; text-align:center">{{rendered_value}}</div>
+          <div style = "color: black; background-color: #ff3399; font-size:100%; text-align:center">{{rendered_value}}</div>
           {% elsif value > 25000001 and value <= 50000000 %}
-          <div style = " background-color: #00ff00; font-size:100%; text-align:center">{{rendered_value}}</div>
+          <div style = "color: black; background-color: #00ff00; font-size:100%; text-align:center">{{rendered_value}}</div>
           {% else %}
-            <p style="color: black; background-color: orange; font-size:100%; text-align:center">{{ rendered_value }}</p>
+          <p style="color: black; background-color: #0099ff; font-size:100%; text-align:center">{{ rendered_value }}</p>
           {% endif %}
 
           ;;
