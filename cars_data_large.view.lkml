@@ -26,7 +26,61 @@ view: cars_data_large {
       url: "/explore/german_used_cars/cars_data_large?fields=cars_data_large.brand,cars_data_large.gearbox&f[cars_data_large.count]={{ _filters['cars_data_large.count'] | url_encode }}&f[cars_data_large.brand]={{ _filters['cars_data_large.brand'] | url_encode }}"
       icon_url: "http://www.looker.com/favicon.ico"
     }
+  }
 
+#   dimension: logo_test {
+#     type: string
+#     sql: ${brand} ;;
+#     html: <img src="https://logo.clearbit.com/{{value}}.jpg"> ;;
+#   }
+
+
+  dimension: logo {
+    type: string
+    sql: case
+    when ${brand} = 'bmw' then 'http://www.carlogos.org/logo/BMW-logo-2000-2048x2048.png'
+    when ${brand} = 'volkswagen' then 'http://www.carlogos.org/logo/Volkswagen-logo-2015-1920x1080.png'
+    when ${brand} = 'mercedesbenz' then 'http://www.carlogos.org/logo/Mercedes-Benz-logo-2008-1920x1080.png'
+    when ${brand} = 'opel' then 'http://www.carlogos.org/logo/Opel-logo-2009-1920x1080.png'
+    when ${brand} = 'audi' then 'http://www.carlogos.org/logo/Audi-logo-2009-1920x1080.png'
+    when ${brand} = 'ford' then 'http://www.carlogos.org/logo/Ford-logo-2003-1366x768.png'
+    when ${brand} = 'renault' then 'http://www.carlogos.org/logo/Renault-logo-2015-2048x2048.png'
+    when ${brand} = 'peugeot' then 'http://www.carlogos.org/logo/Peugeot-logo-2010-1920x1080.png'
+    when ${brand} = 'fiat' then 'http://www.carlogos.org/logo/Fiat-logo-2006-1920x1080.png'
+    when ${brand} = 'seat' then 'http://www.carlogos.org/logo/SEAT-logo-2012-6000x5000.png'
+    when ${brand} = 'skoda' then 'http://www.carlogos.org/logo/Skoda-logo-2016-1920x1080.png'
+    when ${brand} = 'mazda' then 'http://www.carlogos.org/logo/Mazda-logo-1997-1920x1080.png'
+    when ${brand} = 'citroen' then 'http://www.carlogos.org/logo/Citroen-logo-2009-2048x2048.png'
+    when ${brand} = 'nissan' then 'http://www.carlogos.org/logo/Nissan-logo-2013-1440x900.png'
+    when ${brand} = 'toyota' then 'http://www.carlogos.org/logo/Toyota-logo-1989-2560x1440.png'
+    when ${brand} = 'smart' then 'http://www.carlogos.org/logo/Smart-logo-1994-1366x768.png'
+    when ${brand} = 'hyundai' then 'http://www.carlogos.org/logo/Hyundai-logo-silver-2560x1440.png'
+    when ${brand} = 'mini' then 'http://www.carlogos.org/logo/Mini-logo-2001-1920x1080.png'
+    when ${brand} = 'volvo' then 'http://www.carlogos.org/logo/Volvo-logo-2014-1920x1080.png'
+    when ${brand} = 'mitsubishi' then 'http://www.carlogos.org/logo/Mitsubishi-logo-2000x2500.png'
+    when ${brand} = 'honda' then 'http://www.carlogos.org/logo/Honda-logo-1920x1080.png'
+    when ${brand} = 'kia' then 'http://www.carlogos.org/logo/Kia-logo-2560x1440.png'
+    when ${brand} = 'alfaromeo' then 'http://www.carlogos.org/logo/Alfa-Romeo-logo-2015-1920x1080.png'
+    when ${brand} = 'porsche' then 'http://www.carlogos.org/logo/Porsche-logo-2008-1920x1080.png'
+    when ${brand} = 'suzuki' then 'http://www.carlogos.org/logo/Suzuki-logo-5000x2500.png'
+    when ${brand} = 'chevrolet' then 'http://www.carlogos.org/logo/Chevrolet-logo-2013-2560x1440.png'
+    when ${brand} = 'chrysler' then 'http://www.carlogos.org/logo/Chrysler-logo-2010-1920x1080.png'
+    when ${brand} = 'dacia' then 'http://www.carlogos.org/logo/Dacia-logo-2008-1920x1080.png'
+    when ${brand} = 'jeep' then 'http://www.carlogos.org/logo/Jeep-logo-green-3840x2160.png'
+    when ${brand} = 'subaru' then 'http://www.carlogos.org/logo/Subaru-logo-2003-2560x1440.png'
+    when ${brand} = 'landrover' then 'http://www.carlogos.org/logo/Land-Rover-logo-2011-1920x1080.png'
+    when ${brand} = 'daihatsu' then 'http://www.carlogos.org/logo/Daihatsu-logo-1997-1280x233.png'
+    when ${brand} = 'jaguar' then 'http://www.carlogos.org/logo/Jaguar-logo-2012-1920x1080.png'
+    when ${brand} = 'saab' then 'http://www.carlogos.org/logo/Saab-logo-2013-2000x450.png'
+    when ${brand} = 'daewoo' then 'http://www.carlogos.org/logo/Daewoo-logo-1920x1080.png'
+    when ${brand} = 'lancia' then 'http://www.carlogos.org/logo/Lancia-logo-2007-1920x1080.png'
+    when ${brand} = 'rover' then 'http://www.carlogos.org/logo/Rover-logo-2003-3840x2160.png'
+    when ${brand} = 'lada' then 'http://www.carlogos.org/logo/Lada-logo-silver-1366x768.jpg'
+    when ${brand} = 'trabant' then 'https://logo-png.com/logo/trabant-logo.png'
+    when ${brand} = 'sonstigeautos' then 'http://icons.iconarchive.com/icons/icons8/ios7/256/Transport-Cars-icon.png'
+    else null
+    end;;
+    html: <img size = 10 height = 50 width = 75 src="{{value}}"></img> ;;
   }
 
   dimension_group: date_created {
