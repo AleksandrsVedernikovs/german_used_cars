@@ -177,10 +177,30 @@ view: cars_data_large {
     type: string
     sql: ${TABLE}.model ;;
   }
+ dimension: month_of_regestration_{
+  hidden: yes
+   type: number
+  sql: ${TABLE}.month_of_registration ;;
+ }
+
 
   dimension: month_of_registration {
-    type: number
-    sql: ${TABLE}.month_of_registration ;;
+    type: string
+    sql: CASE
+          WHEN ${TABLE}.month_of_registration = 1 THEN 'JANUARY'
+          WHEN ${TABLE}.month_of_registration = 2 THEN 'FEBRUARY'
+          WHEN ${TABLE}.month_of_registration = 3 THEN 'MARCH'
+          WHEN ${TABLE}.month_of_registration = 4 THEN 'APRIL'
+          WHEN ${TABLE}.month_of_registration = 5 THEN 'MAY'
+          WHEN ${TABLE}.month_of_registration = 6 THEN 'JUNE'
+          WHEN ${TABLE}.month_of_registration = 7 THEN 'JULY'
+          WHEN ${TABLE}.month_of_registration = 8 THEN 'AUGUST'
+          WHEN ${TABLE}.month_of_registration = 9 THEN 'SEPTEMBER'
+          WHEN ${TABLE}.month_of_registration = 10 THEN 'OCTOBER'
+          WHEN ${TABLE}.month_of_registration = 11 THEN 'NOVEMBER'
+          WHEN ${TABLE}.month_of_registration = 12 THEN 'DECEMBER'
+          END ;;
+          order_by_field: month_of_regestration_
   }
 
   dimension: name {
