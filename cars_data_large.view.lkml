@@ -27,6 +27,52 @@ view: cars_data_large {
       icon_url: "http://www.looker.com/favicon.ico"
     }
   }
+  dimension: brand_group {
+    type: string
+    sql: CASE
+          WHEN ${TABLE}.brand = 'lada' THEN 'other'
+          WHEN ${TABLE}.brand = 'trabant' THEN 'other'
+          WHEN ${TABLE}.brand = 'other' THEN 'other'
+          WHEN ${TABLE}.brand = 'chevrolet' THEN 'budget'
+          WHEN ${TABLE}.brand = 'daewoo' THEN 'budget'
+          WHEN ${TABLE}.brand = 'dacia' THEN 'budget'
+          WHEN ${TABLE}.brand = 'hyundai' THEN 'budget_plus'
+          WHEN ${TABLE}.brand = 'kia' THEN 'budget_plus'
+          WHEN ${TABLE}.brand = 'skoda' THEN 'budget_plus'
+          WHEN ${TABLE}.brand = 'daihatsu' THEN 'budget_plus'
+          WHEN ${TABLE}.brand = 'chrysler' THEN 'mid_minus'
+          WHEN ${TABLE}.brand = 'fiat' THEN 'mid_minus'
+          WHEN ${TABLE}.brand = 'ford' THEN 'mid_minus'
+          WHEN ${TABLE}.brand = 'citroen' THEN 'mid_minus'
+          WHEN ${TABLE}.brand = 'mitsubishi' THEN 'mid_minus'
+          WHEN ${TABLE}.brand = 'opel' THEN 'mid_minus'
+          WHEN ${TABLE}.brand = 'rover' THEN 'mid_minus'
+          WHEN ${TABLE}.brand = 'seat' THEN 'mid_minus'
+          WHEN ${TABLE}.brand = 'suzuki' THEN 'mid_minus'
+          WHEN ${TABLE}.brand = 'nissan' THEN 'mid_range'
+          WHEN ${TABLE}.brand = 'peugeot' THEN 'mid_range'
+          WHEN ${TABLE}.brand = 'renault' THEN 'mid_range'
+          WHEN ${TABLE}.brand = 'toyota' THEN 'mid_range'
+          WHEN ${TABLE}.brand = 'honda' THEN 'mid_plus'
+          WHEN ${TABLE}.brand = 'mazda' THEN 'mid_plus'
+          WHEN ${TABLE}.brand = 'smart' THEN 'mid_plus'
+          WHEN ${TABLE}.brand = 'subaru' THEN 'mid_plus'
+          WHEN ${TABLE}.brand = 'volkswagen' THEN 'mid_plus'
+          WHEN ${TABLE}.brand = 'alfaromeo' THEN 'premium_minus'
+          WHEN ${TABLE}.brand = 'lancia' THEN 'premium_minus'
+          WHEN ${TABLE}.brand = 'saab' THEN 'premium_minus'
+          WHEN ${TABLE}.brand = 'jeep' THEN 'premium_minus'
+          WHEN ${TABLE}.brand = 'volvo' THEN 'premium_minus'
+          WHEN ${TABLE}.brand = 'mini' THEN 'premium_minus'
+          WHEN ${TABLE}.brand = 'audi' THEN 'premium'
+          WHEN ${TABLE}.brand = 'bmw' THEN 'premium'
+          WHEN ${TABLE}.brand = 'jaguar' THEN 'premium'
+          WHEN ${TABLE}.brand = 'landrover' THEN 'premium'
+          WHEN ${TABLE}.brand = 'mercedesbenz' THEN 'premium'
+          WHEN ${TABLE}.brand = 'porsche' THEN 'premium'
+          ELSE null
+          END ;;
+  }
 
 #   dimension: logo_test {
 #     type: string
