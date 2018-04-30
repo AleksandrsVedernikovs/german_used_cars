@@ -281,11 +281,19 @@ view: cars_data_large {
   dimension: price {
     type: number
     sql: ${TABLE}.price ;;
-    value_format_name: usd_0
+    value_format_name: eur_0
     link:{
       label: "test"
       url: "/dashboards/german_used_cars::price?price_bucket={{value}}"
     }
+  }
+
+  dimension: price_tier {
+    type: tier
+    tiers: [0,20001,50001,100001,500001,1000000]
+    style: integer
+    sql: ${price} ;;
+    value_format_name: eur_0
   }
 
   dimension: difference_from_average_price {
@@ -392,7 +400,7 @@ view: cars_data_large {
   }
   measure: count {
     type: count
-    drill_fields: [id, name, count]
+    drill_fields: [id, name, count, year_of_registration, price, brand]
     #html: <font size="5">{{ rendered_value }}</font> ;;
   }
   measure: most_recent_sold {
