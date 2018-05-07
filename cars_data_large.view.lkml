@@ -30,46 +30,14 @@ view: cars_data_large {
   dimension: brand_group {
     type: string
     sql: CASE
-          WHEN ${TABLE}.brand = 'lada' THEN 'other'
-          WHEN ${TABLE}.brand = 'trabant' THEN 'other'
-          WHEN ${TABLE}.brand = 'other' THEN 'other'
-          WHEN ${TABLE}.brand = 'chevrolet' THEN 'budget'
-          WHEN ${TABLE}.brand = 'daewoo' THEN 'budget'
-          WHEN ${TABLE}.brand = 'dacia' THEN 'budget'
-          WHEN ${TABLE}.brand = 'hyundai' THEN 'budget_plus'
-          WHEN ${TABLE}.brand = 'kia' THEN 'budget_plus'
-          WHEN ${TABLE}.brand = 'skoda' THEN 'budget_plus'
-          WHEN ${TABLE}.brand = 'daihatsu' THEN 'budget_plus'
-          WHEN ${TABLE}.brand = 'chrysler' THEN 'mid_minus'
-          WHEN ${TABLE}.brand = 'fiat' THEN 'mid_minus'
-          WHEN ${TABLE}.brand = 'ford' THEN 'mid_minus'
-          WHEN ${TABLE}.brand = 'citroen' THEN 'mid_minus'
-          WHEN ${TABLE}.brand = 'mitsubishi' THEN 'mid_minus'
-          WHEN ${TABLE}.brand = 'opel' THEN 'mid_minus'
-          WHEN ${TABLE}.brand = 'rover' THEN 'mid_minus'
-          WHEN ${TABLE}.brand = 'seat' THEN 'mid_minus'
-          WHEN ${TABLE}.brand = 'suzuki' THEN 'mid_minus'
-          WHEN ${TABLE}.brand = 'nissan' THEN 'mid_range'
-          WHEN ${TABLE}.brand = 'peugeot' THEN 'mid_range'
-          WHEN ${TABLE}.brand = 'renault' THEN 'mid_range'
-          WHEN ${TABLE}.brand = 'toyota' THEN 'mid_range'
-          WHEN ${TABLE}.brand = 'honda' THEN 'mid_plus'
-          WHEN ${TABLE}.brand = 'mazda' THEN 'mid_plus'
-          WHEN ${TABLE}.brand = 'smart' THEN 'mid_plus'
-          WHEN ${TABLE}.brand = 'subaru' THEN 'mid_plus'
-          WHEN ${TABLE}.brand = 'volkswagen' THEN 'mid_plus'
-          WHEN ${TABLE}.brand = 'alfaromeo' THEN 'premium_minus'
-          WHEN ${TABLE}.brand = 'lancia' THEN 'premium_minus'
-          WHEN ${TABLE}.brand = 'saab' THEN 'premium_minus'
-          WHEN ${TABLE}.brand = 'jeep' THEN 'premium_minus'
-          WHEN ${TABLE}.brand = 'volvo' THEN 'premium_minus'
-          WHEN ${TABLE}.brand = 'mini' THEN 'premium_minus'
-          WHEN ${TABLE}.brand = 'audi' THEN 'premium'
-          WHEN ${TABLE}.brand = 'bmw' THEN 'premium'
-          WHEN ${TABLE}.brand = 'jaguar' THEN 'premium'
-          WHEN ${TABLE}.brand = 'landrover' THEN 'premium'
-          WHEN ${TABLE}.brand = 'mercedesbenz' THEN 'premium'
-          WHEN ${TABLE}.brand = 'porsche' THEN 'premium'
+          WHEN ${TABLE}.brand IN ('lada','trabant','other') THEN 'other'
+          WHEN ${TABLE}.brand IN ('chevrolet','daewoo','dacia') THEN 'budget'
+          WHEN ${TABLE}.brand IN ('hyundai','kia','skoda','daihatsu') THEN 'budget_plus'
+          WHEN ${TABLE}.brand IN ('chrysler','fiat','ford','citroen','mitsubishi','opel','rover','seat','suzuki') THEN 'mid_minus'
+          WHEN ${TABLE}.brand IN ('nissan','peugeot','renault','toyota') THEN 'mid_range'
+          WHEN ${TABLE}.brand IN ('honda','mazda','smart','subaru','volkswagen') THEN 'mid_plus'
+          WHEN ${TABLE}.brand IN ('alfaromeo','lancia','saab','jeep','volvo','mini') THEN 'premium_minus'
+          WHEN ${TABLE}.brand IN ('audi','bmw','jaguar','landrover','mercedesbenz','porsche') THEN 'premium'
           ELSE null
           END ;;
   }
@@ -142,7 +110,8 @@ view: cars_data_large {
       month_name,
       quarter,
       week_of_year,
-      year
+      year,
+      quarter_of_year
     ]
     convert_tz: no
     sql: ${TABLE}.date_created ;;
@@ -213,7 +182,8 @@ view: cars_data_large {
       week,
       month,
       quarter,
-      year
+      year,
+      quarter_of_year
     ]
     convert_tz: no
     sql: ${TABLE}.last_seen ;;
@@ -305,6 +275,7 @@ view: cars_data_large {
   measure: most_expensive_item {
     type: max
     sql: ${price} ;;
+    drill_fields: [id, name, count, year_of_registration, price, brand]
     #value_format_name: eur_0
     value_format: "\"€ \"#,##0"
   }
@@ -312,16 +283,19 @@ view: cars_data_large {
   measure: least_expensive_item {
     type: min
     sql: ${price} ;;
+    drill_fields: [id, name, count, year_of_registration, price, brand]
     value_format_name: decimal_0
   }
   measure: average_sale_price {
     type: average
     sql: ${price} ;;
+    drill_fields: [id, name, count, year_of_registration, price, brand]
     value_format:  "\"€ \"#,##0.00"
   }
   measure: total_sale_price {
     type: sum
     sql: ${price} ;;
+    drill_fields: [id, name, count, year_of_registration, price, brand]
     value_format_name: decimal_0
   }
 
@@ -410,11 +384,12 @@ view: cars_data_large {
   measure: percent_of_total_count {
     type: percent_of_total
     sql: ${count} ;;
+    drill_fields: [id, name, count, year_of_registration, price, brand]
   }
 
   measure: count_brand {
     type: count
-    drill_fields: [id, name, price]
+    drill_fields: [id, name, count, year_of_registration, price, brand]
     filters: {
       field: days_until_sold
       value: "0"
@@ -422,7 +397,7 @@ view: cars_data_large {
   }
   measure: count_filter_value_yes {
     type: count
-    drill_fields: [id, name, price]
+    drill_fields: [id, name, count, year_of_registration, price, brand]
     filters: {
       field: brand_selector
       value: "yes"
@@ -430,7 +405,7 @@ view: cars_data_large {
   }
   measure: revenue {
     type: sum
-    drill_fields: [id, name, price]
+    drill_fields: [id, name, count, year_of_registration, price, brand]
     sql: ${price} ;;
     value_format_name: usd_0
 
@@ -475,12 +450,13 @@ view: cars_data_large {
   measure: median_price {
     type: median
     sql: ${price} ;;
+    drill_fields: [id, name, count, year_of_registration, price, brand]
     value_format_name: eur
   }
 
   measure: count_filter_value_no {
     type: count
-    drill_fields: [id, name, price]
+    drill_fields: [id, name, count, year_of_registration, price, brand]
     filters: {
       field: brand_selector
       value: "no"
