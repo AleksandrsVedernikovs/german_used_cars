@@ -284,19 +284,22 @@ view: cars_data_large {
     type: min
     sql: ${price} ;;
     drill_fields: [id, name, count, year_of_registration, price, brand]
-    value_format_name: decimal_0
+    #value_format_name: decimal_0
+    value_format: "\"€ \"#,##0"
   }
   measure: average_sale_price {
     type: average
     sql: ${price} ;;
     drill_fields: [id, name, count, year_of_registration, price, brand]
-    value_format:  "\"€ \"#,##0.00"
+    #value_format:  "\"€ \"#,##0.00"
+    value_format: "\"€ \"#,##0"
   }
   measure: total_sale_price {
     type: sum
     sql: ${price} ;;
     drill_fields: [id, name, count, year_of_registration, price, brand]
-    value_format_name: decimal_0
+    #value_format_name: decimal_0
+    value_format: "\"€ \"#,##0"
   }
 
   parameter: sale_price_metric_picker {
@@ -325,7 +328,7 @@ view: cars_data_large {
     type: number
     label_from_parameter: sale_price_metric_picker
     sql: {% parameter sale_price_metric_picker %}(${price}) ;;
-    value_format_name: usd
+    value_format_name: eur_0
   }
 
 
@@ -407,7 +410,8 @@ view: cars_data_large {
     type: sum
     drill_fields: [id, name, count, year_of_registration, price, brand]
     sql: ${price} ;;
-    value_format_name: usd_0
+    #value_format_name: usd_0
+    value_format: "\"€ \"#,##0"
 
 #  link:{
 #   label: "test"
