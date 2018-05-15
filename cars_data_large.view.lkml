@@ -138,6 +138,7 @@ view: cars_data_large {
     sql: ${date_created_raw};;
   }
 
+
   dimension: days_on_site {
     type: number
     sql:  date ${last_seen_date} - date ${date_created_date} ;;
@@ -467,55 +468,55 @@ view: cars_data_large {
     }
   }
 
-  measure: sum_per_brand_revenue {
-    type: number
-    sql: CASE
-          WHEN (${brand} = 'bmw') THEN Sum(${price})
-          WHEN (${brand} = 'audi') THEN Sum(${price})
-          WHEN (${brand} = 'alfaromeo') THEN Sum(${price})
-          WHEN (${brand} = 'daewoo') THEN Sum(${price})
-          WHEN (${brand} = 'lancia') THEN Sum(${price})
-          WHEN (${brand} = 'renault') THEN Sum(${price})
-          WHEN (${brand} = 'ford') THEN Sum(${price})
-          WHEN (${brand} = 'toyota') THEN Sum(${price})
-          WHEN (${brand} = 'sonstigeautos') THEN Sum(${price})
-          WHEN (${brand} = 'kia') THEN Sum(${price})
-          WHEN (${brand} = 'peugeot') THEN Sum(${price})
-          WHEN (${brand} = 'subaru') THEN Sum(${price})
-          WHEN (${brand} = 'nissan') THEN Sum(${price})
-          WHEN (${brand} = 'rover') THEN Sum(${price})
-          WHEN (${brand} = 'mitsubishi') THEN Sum(${price})
-          WHEN (${brand} = 'dacia') THEN Sum(${price})
-          WHEN (${brand} = 'chevrolet') THEN Sum(${price})
-          WHEN (${brand} = 'honda') THEN Sum(${price})
-          WHEN (${brand} = 'daihatsu') THEN Sum(${price})
-          WHEN (${brand} = 'hyundai') THEN Sum(${price})
-          WHEN (${brand} = 'porsche') THEN Sum(${price})
-          WHEN (${brand} = 'smart') THEN Sum(${price})
-          WHEN (${brand} = 'suzuki') THEN Sum(${price})
-          WHEN (${brand} = 'mazda') THEN Sum(${price})
-          WHEN (${brand} = 'landrover') THEN Sum(${price})
-          WHEN (${brand} = 'mercedesbenz') THEN Sum(${price})
-          WHEN (${brand} = 'volkswagen') THEN Sum(${price})
-          WHEN (${brand} = 'volvo') THEN Sum(${price})
-          WHEN (${brand} = 'fiat') THEN Sum(${price})
-          WHEN (${brand} = 'seat') THEN Sum(${price})
-          WHEN (${brand} = 'mini') THEN Sum(${price})
-          WHEN (${brand} = 'saab') THEN Sum(${price})
-          WHEN (${brand} = 'opel') THEN Sum(${price})
-          WHEN (${brand} = 'jaguar') THEN Sum(${price})
-          WHEN (${brand} = 'skoda') THEN Sum(${price})
-          WHEN (${brand} = 'chrysler') THEN Sum(${price})
-          WHEN (${brand} = 'jeep') THEN Sum(${price})
-          WHEN (${brand} = 'citroen') THEN Sum(${price})
-          WHEN (${brand} = 'lada') THEN Sum(${price})
-          WHEN (${brand} = 'trabant') THEN Sum(${price})
-
-
-
-     ELSE
-     NULL END;;
-  }
+#   measure: sum_per_brand_revenue {
+#     type: number
+#     sql: CASE
+#           WHEN (${brand} = 'bmw') THEN Sum(${price})
+#           WHEN (${brand} = 'audi') THEN Sum(${price})
+#           WHEN (${brand} = 'alfaromeo') THEN Sum(${price})
+#           WHEN (${brand} = 'daewoo') THEN Sum(${price})
+#           WHEN (${brand} = 'lancia') THEN Sum(${price})
+#           WHEN (${brand} = 'renault') THEN Sum(${price})
+#           WHEN (${brand} = 'ford') THEN Sum(${price})
+#           WHEN (${brand} = 'toyota') THEN Sum(${price})
+#           WHEN (${brand} = 'sonstigeautos') THEN Sum(${price})
+#           WHEN (${brand} = 'kia') THEN Sum(${price})
+#           WHEN (${brand} = 'peugeot') THEN Sum(${price})
+#           WHEN (${brand} = 'subaru') THEN Sum(${price})
+#           WHEN (${brand} = 'nissan') THEN Sum(${price})
+#           WHEN (${brand} = 'rover') THEN Sum(${price})
+#           WHEN (${brand} = 'mitsubishi') THEN Sum(${price})
+#           WHEN (${brand} = 'dacia') THEN Sum(${price})
+#           WHEN (${brand} = 'chevrolet') THEN Sum(${price})
+#           WHEN (${brand} = 'honda') THEN Sum(${price})
+#           WHEN (${brand} = 'daihatsu') THEN Sum(${price})
+#           WHEN (${brand} = 'hyundai') THEN Sum(${price})
+#           WHEN (${brand} = 'porsche') THEN Sum(${price})
+#           WHEN (${brand} = 'smart') THEN Sum(${price})
+#           WHEN (${brand} = 'suzuki') THEN Sum(${price})
+#           WHEN (${brand} = 'mazda') THEN Sum(${price})
+#           WHEN (${brand} = 'landrover') THEN Sum(${price})
+#           WHEN (${brand} = 'mercedesbenz') THEN Sum(${price})
+#           WHEN (${brand} = 'volkswagen') THEN Sum(${price})
+#           WHEN (${brand} = 'volvo') THEN Sum(${price})
+#           WHEN (${brand} = 'fiat') THEN Sum(${price})
+#           WHEN (${brand} = 'seat') THEN Sum(${price})
+#           WHEN (${brand} = 'mini') THEN Sum(${price})
+#           WHEN (${brand} = 'saab') THEN Sum(${price})
+#           WHEN (${brand} = 'opel') THEN Sum(${price})
+#           WHEN (${brand} = 'jaguar') THEN Sum(${price})
+#           WHEN (${brand} = 'skoda') THEN Sum(${price})
+#           WHEN (${brand} = 'chrysler') THEN Sum(${price})
+#           WHEN (${brand} = 'jeep') THEN Sum(${price})
+#           WHEN (${brand} = 'citroen') THEN Sum(${price})
+#           WHEN (${brand} = 'lada') THEN Sum(${price})
+#           WHEN (${brand} = 'trabant') THEN Sum(${price})
+#
+#
+#
+#      ELSE
+#      NULL END;;
+#   }
 
 
   dimension: brand_selector {
