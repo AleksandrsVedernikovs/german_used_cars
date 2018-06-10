@@ -26,7 +26,15 @@ explore: cars_data_large {
     sql_on: ${cars_data_large.brand} = ${sales_facts.cars_brand} AND
             ${cars_data_large.year_of_registration} = ${sales_facts.year_of_registration};;
   }
+
+  join: cars_data_predict {
+    type: inner
+    relationship: one_to_one
+    sql_on: ${cars_data_large.id} = ${cars_data_predict.id} ;;
+  }
 }
+
+explore: test {}
 
 explore: location_data {}
 
