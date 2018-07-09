@@ -378,7 +378,7 @@ view: cars_data_large {
   }
   measure: count {
     type: count
-    drill_fields: [id, name, count, year_of_registration, price, brand]
+    drill_fields: [my_first_set*]
     #html: <font size="5">{{ rendered_value }}</font> ;;
   }
   measure: most_recent_sold {
@@ -466,6 +466,12 @@ view: cars_data_large {
       field: brand_selector
       value: "no"
     }
+  }
+
+
+
+  set: my_first_set {
+    fields: [id, name, count, year_of_registration, price, brand]
   }
 
 #   measure: sum_per_brand_revenue {
