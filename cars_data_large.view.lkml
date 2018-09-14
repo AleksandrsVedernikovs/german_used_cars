@@ -14,9 +14,9 @@ view: cars_data_large {
       }
     }
   }
+##zigaziga
 
-
-
+#blblblaaaa
   dimension: brand {
     type: string
     sql: ${TABLE}.brand ;;
@@ -115,6 +115,12 @@ view: cars_data_large {
     ]
     convert_tz: no
     sql: ${TABLE}.date_created ;;
+  }
+
+
+  measure: is_max_date {
+    type: date
+    sql: max(${TABLE}.date_created);;
   }
 
   filter: timeframe_picker {
