@@ -49,6 +49,22 @@ view: cars_data_large {
 #   }
 
 
+
+  dimension: user_id {
+    tags: ["user_id", "brand", "fuel_type"]
+    type: number
+    sql: ${TABLE}.id ;;
+  }
+
+
+
+  measure: testing_m {
+    tags: ["email", "user_id"]
+    type: number
+    sql: 1 ;;
+  }
+
+
   dimension: logo {
     type: string
     sql: case
